@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+footer {
+    position: absolute;
+    bottom: auto;
+    background: none repeat scroll 0% 0% #056135;
+    font-family: helvetica;
+    font-size: 16px;
+    color: #FFF;
+    text-align: center;
+    width: 100%;
+    height: 70px;
+    margin-top: 30px;
+}

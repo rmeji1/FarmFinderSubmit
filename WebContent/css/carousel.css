@@ -1,0 +1,372 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+	/* padding-top :50px ;*/
+  padding-bottom: 100px;
+  color: #5a5a5a;
+}
+
+.farmList{
+width: 60%;
+margin: 10%;
+height: 100%;
+font-family: helvetica;
+font-size: 18px;
+font-weight: 100;
+/* margin-left: 25%; */
+line-height: 30px;
+}
+
+.farmlistdiv .table-responsive .farmList > tbody > tr{
+	color: rgb(245, 203, 125);
+}
+
+.farmlistdiv .table-responsive  .farmList > tbody >tr > td{
+	color: white;
+}
+.farmlistdiv{
+/* height: auto;
+/* width: 300px; */
+/*width: 40%;*/
+/*position: center;
+position: absolute;
+/* top: 0; */
+center: 0;
+background-color: red;
+margin: 20px;
+margin-top: -200px;
+/*margin-left: 30%;
+margin-right: 30%;*/
+background: -webkit-linear-gradient(90deg, rgb(230, 16,21) 30%, rgb(81, 4, 7) 70%);
+background: -o-linear-gradient(90deg, rgb(230, 16,21) 30%, rgb(81, 4, 7) 70%);
+background: -ms-linear-gradient(90deg, rgb(230, 16,21) 30%, rgb(81, 4, 7) 70%);
+background: linear-gradient(180deg, #6DAC58 30%, #056135 70%);
+text-shadow: 1px 1px 5px #265203;
+color: white;
+border: 1px solid white;
+}
+
+
+
+
+@media(min-width:320px){
+	.farmlistdiv{
+	  width:320px;
+	  margin-top: -200px;
+		height: auto;
+		position: center;
+    position: absolute;
+	}.farmlistdiv  .btn{
+
+margin-bottom: 0;
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+white-space: nowrap;
+padding: 6px 12px;
+font-size: 18px;
+line-height: 1.42857143;
+border-radius: 4px;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+background-color: white;
+color: green;
+/* width: 300px; */
+height: auto;
+margin-bottom: 20px;
+margin-left: 25%;
+border: 1px solid green;
+border-radius: 10px;
+right: -20px;
+}
+	
+}
+
+@media(min-width:768px){
+	.farmlistdiv{
+width: 80%;
+/*position: center;*/
+position: absolute;
+/*top: 0;*/
+/*center: 0; */
+/* background-color: red; */
+margin-left: 10%;
+height: auto;
+vertical-align: middle;
+	}.farmlistdiv  .btn{
+
+margin-bottom: 0;
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+background-image: none;
+border: 1px solid transparent;
+white-space: nowrap;
+padding: 6px 12px;
+font-size: 18px;
+line-height: 1.42857143;
+border-radius: 4px;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+background-color: white;
+color: green;
+width: 300px;
+height: auto;
+margin-bottom: 20px;
+margin-left: 25%;
+border: 1px solid green;
+border-radius: 10px;
+right: -20px;
+}.row .col-lg-4{
+width: 32%;
+padding: 2%;
+}
+.img-circle {
+border-radius: 50%;
+width: 140px;
+height: 140px;
+}.row{
+	width:100%;
+}
+	
+}
+
+@media(min-width:992px){
+	.farmlistdiv{
+	height: auto;
+  /* width: 300px; */
+   width: 40%;
+	position: center;
+	position: static;
+	/* top: 0; */
+	center: 0;
+	background-color: red;
+	margin: 20px;
+	margin-top: -200px;
+	margin-left: 30%;	
+	margin-right: 30%;
+}
+.farmlistdiv .btnAdd{
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 18px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: white;
+	color: green;
+	height: auto;
+	margin-bottom: 20px;
+	margin-left: 25%;
+	border: 1px solid green;
+	border-radius: 10px;
+	right: -20px;
+	width: 200px;
+}	
+.farmlistdiv  .btn{
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 18px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: white;
+	color: green;
+	width: 300px;
+	height: auto;
+	margin-bottom: 20px;
+	margin-left: 25%;
+	border: 1px solid green;
+	border-radius: 10px;
+	right: -20px;
+}
+
+.row{
+width: 100%;
+display: block;
+padding-left: 20%;
+padding-right: 10px;
+margin-top: 300px;
+}
+.row .col-lg-4{
+width: 32%;
+padding: 2%;
+}
+.img-circle {
+border-radius: 50%;
+width: 180px;
+height: 170px;
+}
+
+	
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+  padding-right: 0;
+  padding-left: 0;
+}
+.navbar-wrapper .navbar {
+  /* padding-right: 15px;
+  padding-left: 15px; */
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+  z-index: -1;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+  bottom: 150px;
+  padding-bottom: 20px;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Pad the edges of the mobile views a bit */
+.marketing {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Remove the edge padding needed for mobile */
+  .marketing {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+   /*  padding-right: 15px;
+    padding-left:  15px; */
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left:  0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}

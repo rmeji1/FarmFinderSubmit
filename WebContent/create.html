@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		//Example of how to use the metadata service.
+		metadata = "/rest/metadata"
+		$(document).ready(function(){
+			$.getJSON(metadata+"/farm", function(data){
+				$.each(data.attributes, function(key, value){
+					if (value.prettyName != "Password" && value.prettyName != "Products"){
+						$(".farmList").append("<tr><td>" + value.prettyName + "</td><td> <input style='color: black;' name ='" + value.fieldName + "' type='text'/></td></tr>");
+					} 
+					else if (value.prettyName == "Password"){
+						$(".farmList").append("<tr><td>" + value.prettyName + "</td><td> <input style='color: black;' name='" + value.fieldName + "' type='password'/></td></tr>");
+					}
+				}) ;
+			}) ; 
+			
+			//-----------------------------------------------------
+			// Submit farm form data
+			$('.formclass').submit(function(){
+			 	console.log($('.formclass').serializeObject()); // Create json
+			 	postData($('.formclass').serializeObject()); // Submit to rest service
+			 	return false;
+			});
+			
+			//-----------------------------------------------------
+			// Creates json for the farm form
+			$.fn.serializeObject = function()
+		    {
+		       var o = {};
+		       var a = this.serializeArray();
+		       $.each(a, function() {
+		           if (o[this.name]) {
+		               if (!o[this.name].push) {
+		                   o[this.name] = [o[this.name]];
+		               }
+		               o[this.name].push(this.value || '');
+		           } else {
+		               o[this.name] = this.value || '';
+		           }
+		       });
+		       return o;
+		    };
+		    
+			//-----------------------------------------------------
+			// Perform put to create a farm
+		    function postData(data){
+		        $.ajax({
+		                type: "POST",
+		                url: "/rest/farmfinder/farm",
+		                data: JSON.stringify(data),
+		                contentType: "application/json; charset=utf-8",
+		                crossDomain: true,
+		                dataType: "json",
+		                success: function (data, status, jqXHR) {
+		                    alert("success");
+		                    // Redirect to profile page, if we sucessed to create new profile
+		                    window.location.href = "/login.html";
+		                },
+		                error: function (jqXHR, status) {
+		                    console.log(jqXHR);
+		                    alert('failed, please check console for errors');
+		                }
+		             });
+		       }
+			
+		}) //cloeses .ready()
+	</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Farm Finder</title>
+
+    <!-- Bootstrap core CSS -->
+   
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+     <link href="css/farm.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="css/carousel.css" rel="stylesheet">
+    <!-- NAVBAR ================================================= -->
+  
+  </head>
+
+ <body>
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+     <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Farm Finder</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+           <!--  <li class="active"><a href="#">Home</a></li> -->
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+             
+             
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop Here <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a onclick='viewCart()'>View Cart</a></li>
+                <li><a href="#">Pay</a></li>
+              
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+               
+              </ul>
+   
+            </li>
+       
+          </ul>
+          
+          
+<ul class="nav navbar-nav navbar-right" >
+  <li> <a href="login.html">Login </a></li>
+</ul>
+          
+          
+          <!-- <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top</a></li>
+          </ul>   -->
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- Carousel
+    ================================================== -->
+   <div id="myCarousel" class="carousel slide" data-ride="carousel">
+     
+     
+      <!-- Indicators -->
+    <!--  <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"> 
+        </li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>   --> 
+      
+      <div class="carousel-inner">
+        <div class="item active">
+        <!-- adding images on carousel to slide -->      
+        <img src="images/chicken-meat.jpg">
+        
+         <!--  <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">  -->
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Farm Finder.</h1>
+              <p> “A passion for the environment, community, and fine dining.”</p>
+            <!--    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>   -->
+            </div>
+          </div>
+        </div>
+        
+   <!--  ************************************************************************************************** -->   
+     <div class="item">  
+      <img src="images/DSCN0406.jpg"> 
+ <!--  More Imgges -->   
+ <!--  <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">  -->
+          <div class="container">
+            <div class="carousel-caption">
+             <h1> What farmers have been saying:</h1>
+              <p>“I’m proud to know that my vegetables are on the menu at the best local restaurants.” .</p>
+            <!--    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>   -->
+            </div>
+          </div>
+        </div>       
+        
+  <!--  ************************************************************************************************** --> 
+  <!--  ************************************************************************************************** -->         
+     <div class="item">  
+      <img src="images/file9691258059663.jpg"> 
+ <!--  More Imgges -->   
+ <!--  <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">  -->
+          <div class="container">
+            <div class="carousel-caption">
+             <h1> What farmers have been saying:</h1>
+              <p>“I’m proud to know that my vegetables are on the menu at the best local restaurants.” .</p>
+            <!--    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>   -->
+            </div>
+          </div>
+        </div>       
+        
+  <!--  ************************************************************************************************** --> 
+   
+     
+     <!--  ************************************************************************************************** -->         
+     <div class="item">  
+      <img src="images/2012_0826_0117.jpg"> 
+ <!--  More Imgges -->   
+ <!--  <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">  -->
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Farm Finder.</h1>
+              <p> “A passion for the environment, community, and fine dining.”</p>
+            <!--    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>   -->
+            </div>
+          </div>
+        </div>       
+        
+  <!--  ************************************************************************************************** --> 
+  
+  
+  <!--  ************************************************************************************************** -->         
+     <div class="item">  
+      <img src="images/_MG_7294.JPG"> 
+ <!--  More Imgges -->   
+ <!--  <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">  -->
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Farmers.</h1>
+             <h1>“FarmFinder has put our small family farm on the map.” .</h1>
+            <!--    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>   -->
+            </div>
+          </div>
+        </div>       
+        
+  <!--  ************************************************************************************************** -->  
+        <div class="item">
+        
+        <!-- adding images on carousel to slide -->      
+        <img src="images/vegilist.jpg">
+          <!--   <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide">  -->  
+          
+          <div class="container">
+            <div class="carousel-caption">
+              <h1> What farmers have been saying:</h1>
+              <p>“I’m proud to know that my vegetables are on the menu at the best local restaurants.” .</p>
+             <!--  <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>  -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="item">
+         <!-- adding images on carousel to slide -->      
+        <img src="images/vegilist.jpg">
+          <!--   <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide"> -->
+          <div class="container">
+            <div class="carousel-caption">
+            
+              <h1>“FarmFinder has put our small family farm on the map.” .</h1>
+              <p></p>
+             <!--   <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+		<!-- Table to list all farms ========================================== -->
+<!-- Table to list all farms ========================================== -->
+
+<form class="formclass">
+
+<div class="farmlistdiv">
+
+<div class ="table-responsive">
+
+<table class="farmList table">
+
+
+</table>
+
+
+</div>
+
+<input type='submit' class='btn'/>
+
+</div>
+
+
+</form>
+
+
+
+
+
+      <!-- FOOTER -->
+      <footer id="footer">
+       <!--   <p class="pull-right"><a href="#">Back to top</a></p>  -->
+        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+  </body>
+</html>
