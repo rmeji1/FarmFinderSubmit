@@ -12,7 +12,7 @@
 			$.getJSON(farm+"farm", function(data){
 				$.each(data, function(key, value){
 					console.log(value.id) ;
-					$(".farmList").append("<tr><td><a id='"+ value.id +"' onclick='displayFarmProducts(this.id, this.text)'>" + value.name + "</a></td><td><a href='' id='"+ value.id +"' name='farmclicked'>" + value.city +"</a></td></tr>") ;
+					$(".farmList").append("<tr><td><a id='"+ value.id +"' onclick='displayFarmProducts(this.id, this.text)'>" + value.name + "</a></td><td><a onclick='displayFarmProducts(this.id, this.text) id='"+ value.id +"' name='farmclicked'>" + value.city +"</a></td></tr>") ;
 				})
 			}) ;
 			
@@ -157,21 +157,6 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="create.html">Farm </a></li>
 					<li><a href="login.html">Log In </a></li>
-					<li><a class="dropdown-toggle" data-toggle="dropdown">Sign
-							In<strong class="caret"></strong>
-					</a>
-						<div class="dropdown-menu" style="padding: 1px;">
-							<!-- Login form here -->
-							<form class="signin" method="POST" action="/login"
-								enctype="application/x-www-form-urlencoded">
-								<input class="form-control signin" name="username" type="text"
-									placeholder="Email address" /> <input type="password"
-									name="password" class="form-control signin"
-									placeholder="Password" />
-								<button class="btn btn-sm btn-primary btn-block" type="submit">
-									Log in</button>
-							</form>
-						</div></li>
 				</ul>
 
 
