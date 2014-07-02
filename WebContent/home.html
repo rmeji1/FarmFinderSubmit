@@ -54,8 +54,7 @@ s
 						// Submit farm form data
 						$('.formclass').submit(function() {
 							console.log($('.formclass').serializeObject()); // Create json
-							//postData($('.formclass').serializeObject()); // Submit to rest service'
-							console.log(getCookie('farm_id')) ;
+							postData($('.formclass').serializeObject()); // Submit to rest service'
 							return false;
 						});
 						
@@ -89,7 +88,7 @@ s
 						};
 
 						//-----------------------------------------------------
-						// Perform put to create a farm
+						// Perform put to create a product
 						function postData(data) {
 							$
 									.ajax({
