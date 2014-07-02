@@ -51,7 +51,7 @@ public class FarmFinder {
 	@ApiOperation(value = "This function is not useful and should be removed", notes = "More notes about this method", response=Farm.class)
 	public Response createFarm(){
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
-		CategoryRepo repo = (CategoryRepo) ctx.getBean(CategoryRepo.class) ;
+		CategoryRepo repo = ctx.getBean(CategoryRepo.class) ;
 		/*Create new category class*/ 
 		Category cat = new Category() ;
 		cat.setName("Strawberry") ;		
@@ -103,7 +103,7 @@ public class FarmFinder {
 			e.printStackTrace();
 		}
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
-		ProductRepo repo = (ProductRepo) ctx.getBean(ProductRepo.class) ;
+		ProductRepo repo = ctx.getBean(ProductRepo.class) ;
 		
 		return Response.status(500).entity("error").build();
 
@@ -174,7 +174,7 @@ public class FarmFinder {
 	public Response createFarm(@ApiParam(value = "Farm JSON data", required = true)String jsonData){
 		/*Get repo to be used later to save the farm*/
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class) ;
-		FarmRepo repo = (FarmRepo) ctx.getBean(FarmRepo.class) ;
+		FarmRepo repo = ctx.getBean(FarmRepo.class) ;
 		/*Uses ObjectMapper to convert jsonData to Farm Object*/
 		Farm farm;
 		try {
@@ -216,7 +216,7 @@ public class FarmFinder {
 	public Response getAllFarms(){
 		/*Get repo to be used later to save the farm*/
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class) ;
-		FarmRepo repo = (FarmRepo) ctx.getBean(FarmRepo.class) ;
+		FarmRepo repo = ctx.getBean(FarmRepo.class) ;
 		List<Farm> farms = repo.findAll() ;
 		return Response.status(200).entity(farms).build();
 	}
@@ -237,7 +237,7 @@ public class FarmFinder {
 	public Response getFarmByPage(@ApiParam(value = "Index of page", required = true)@PathParam("page") int page){
 		/*Get repo to be used later to save the farm*/
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class) ;
-		FarmRepo repo = (FarmRepo) ctx.getBean(FarmRepo.class) ;
+		FarmRepo repo = ctx.getBean(FarmRepo.class) ;
 		Page<Farm> farms = repo.findAll( new PageRequest(page, 10)) ;
 		return Response.status(200).entity(farms).build();
 	}
@@ -259,7 +259,7 @@ public class FarmFinder {
 	public Response createProduct(@ApiParam(value = "Product data that will be saved", required = true)String data){
 		/*Get repo to be used later to save the farm*/
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class) ;
-		ProductRepo repo = (ProductRepo) ctx.getBean(ProductRepo.class) ;
+		ProductRepo repo = ctx.getBean(ProductRepo.class) ;
 		Product product = null ;
 		try {
 			System.out.println(data) ;
@@ -295,11 +295,72 @@ public class FarmFinder {
 	public Response getProductsForFarm(@ApiParam(value="Farm id", required=true )@PathParam("farm_id") String farm_id){
 		/*Get repo to be used later to save the farm*/
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class) ;
-		ProductRepo repo = (ProductRepo) ctx.getBean(ProductRepo.class) ;
+		ProductRepo repo = ctx.getBean(ProductRepo.class) ;
 		List<Product> prods = repo.findByFarmID(farm_id) ;
 		return Response.status(200).entity(prods).build() ;
 	}
 	
+	// This is a rest service for getting 1 category
+	@GET
+	@Path("/getCategory/{Id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Goal: get category with id", notes = "Created by: John S.", response=Category.class)
+	@ApiResponses(value = {
+			  @ApiResponse(code = 200, message = "Able to get cateogry with id")
+			  })	
+	public Response getCategory(@ApiParam(value="Category id", required=true )@PathParam("Id") String Id){
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class); //get the application scope
+		CategoryRepo repo = ctx.getBean(CategoryRepo.class) ;	//getting mongo repo for category
+		Category category = repo.findOne(Id);	//create a category
+		return Response.status(200).entity(category).build();	//return the build
+	}
+	
+	// rest service to get all catergories
+	@GET
+	@Path("/getCategories")
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Goal: get all categories", notes = "Created by: John S.", response=Category.class)
+	@ApiResponses(value = {
+			  @ApiResponse(code = 200, message = "Able to get all categories")
+			  })
+	public Response getCategories(){
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class); //get the application scope
+		CategoryRepo repo = ctx.getBean(CategoryRepo.class) ;
+		List<Category> categories = repo.findAll();	//returns a list
+		return Response.status(200).entity(categories).build();
+	}
+	
+	// rest service to create a farm category
+	@POST
+	@Path("/createCategory/{Name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Goal: create a category with name", notes = "Created by: John S.", response=Category.class)
+	@ApiResponses(value = {
+			  @ApiResponse(code = 200, message = "Able to create category with name")
+			  })
+	public Response createCategory(@ApiParam(value="Name for category", required=true)@PathParam("Name") String Name){
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class); //get the application scope
+		CategoryRepo repo = ctx.getBean(CategoryRepo.class) ;
+		Category category = new Category();
+		category.setName(Name);
+		repo.save(category);
+		return Response.status(201).entity(category).build();
+	}
+	
+	// rest service to delete a farm category
+	@DELETE
+	@Path("/deleteCategory/{Id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Goal: delete a category with id", notes = "Created by: John S.", response=Category.class)
+	@ApiResponses(value = {
+			  @ApiResponse(code = 200, message = "Able to delete category")
+			  })
+	public Response deleteCategory(@ApiParam(value="Id for category to delete", required=true)@PathParam("Id") String Id){
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class); //get the application scope
+		CategoryRepo repo = ctx.getBean(CategoryRepo.class) ;
+		repo.delete(Id);
+		return Response.status(200).entity(Id).build();
+	}
 }
 
 
